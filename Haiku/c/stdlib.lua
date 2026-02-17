@@ -172,3 +172,4 @@ enum { EXIT_SUCCESS = 0 };
 enum { EXIT_FAILURE = 1 };
 /* + END <stdlib.h> /boot/system/develop/headers/bsd/stdlib.h */
 ]]
+return ffi.C
