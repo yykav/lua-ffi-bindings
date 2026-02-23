@@ -4,7 +4,6 @@
 
 name = "ffi"
 files = {
-	".github/FUNDING.yml",
 	"LICENSE",
 	"README.md",
 	"archive.lua",
