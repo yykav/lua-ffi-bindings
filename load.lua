@@ -44,7 +44,9 @@ local ffi_load = setmetatable({}, {
 		if type(v) ~= 'string' then
 			error("require'ffi.load'("..tostring(reqname).." was not a string: "..tostring(v))
 		end
-		v = v:gsub('%$([_%w]+)', os.getenv)
+		v = v:gsub('%${([_%w]+)}', function(k)
+			return tostring(os.getenv(k))
+		end)
 		return ffi.load(v)
 	end,
 })
@@ -69,7 +71,7 @@ end
 lookup'cimgui_sdl3'.Linux = '/usr/local/lib/libcimgui_sdl3.so'				-- I'll let you pick the specific sdl version here
 lookup'hdf5'.Linux = '/usr/lib/x86_64-linux-gnu/hdf5/serial/libhdf5.so'
 lookup'luajit'.Linux = '/usr/local/lib/libluajit.so'	-- why isn't this finding by default?
-lookup'webgpu_dawn'.Linux = os.getenv'LUA_PROJECT_PATH'..'/wgpu/bin/Linux/x64/libwebgpu_dawn.so'
+lookup'webgpu_dawn'.Linux = '${LUA_PROJECT_PATH}/wgpu/bin/Linux/x64/libwebgpu_dawn.so'
 
 -- ================================ Windows ================================
 
